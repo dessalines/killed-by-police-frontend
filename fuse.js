@@ -29,7 +29,7 @@ Sparky.task('config', _ => {
       WebIndexPlugin({
         title: 'Inferno Typescript FuseBox Example',
         template: 'src/index.html',
-        path: "/"
+        path: "."
       }),
       isProduction &&
       QuantumPlugin({
