@@ -16,7 +16,7 @@ Sparky.task('config', _ => {
   fuse = new FuseBox({
     homeDir: 'src',
     hash: isProduction,
-    output: 'dist/$name.js',
+    output: 'docs/$name.js',
     experimentalFeatures: true,
     cache: !isProduction,
     sourceMaps: !isProduction,
@@ -41,9 +41,9 @@ Sparky.task('config', _ => {
   });
   app = fuse.bundle('app').instructions('>index.tsx');
 });
-Sparky.task('clean', _ => Sparky.src('dist/').clean('dist/'));
+Sparky.task('clean', _ => Sparky.src('docs/').clean('docs/'));
 Sparky.task('env', _ => (isProduction = true));
-Sparky.task('copy-assets', () => Sparky.src('assets/*.ico').dest('dist/'));
+Sparky.task('copy-assets', () => Sparky.src('assets/*.ico').dest('docs/'));
 Sparky.task('dev', ['clean', 'config', 'copy-assets'], _ => {
   fuse.dev();
   app.hmr().watch();
