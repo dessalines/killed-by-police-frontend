@@ -7,7 +7,7 @@ const container = document.getElementById('app');
 class Index extends Component<any, any> {
   render() {
     return (
-      <div>a test</div>
+      <div>a test 2</div>
     );
   }
 }
