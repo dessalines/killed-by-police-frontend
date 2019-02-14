@@ -44,12 +44,13 @@ Sparky.task('config', _ => {
 Sparky.task('clean', _ => Sparky.src('docs/').clean('docs/'));
 Sparky.task('env', _ => (isProduction = true));
 Sparky.task('copy-assets', () => Sparky.src('assets/*.ico').dest('docs/'));
-Sparky.task('dev', ['clean', 'config', 'copy-assets'], _ => {
+Sparky.task('copy-csv', () => Sparky.src('data-dumps/dumps/killed_by_police.csv').dest('docs/'));
+Sparky.task('dev', ['clean', 'config', 'copy-assets', 'copy-csv'], _ => {
   fuse.dev();
   app.hmr().watch();
   return fuse.run();
 });
-Sparky.task('prod', ['clean', 'env', 'config', 'copy-assets'], _ => {
+Sparky.task('prod', ['clean', 'env', 'config', 'copy-assets', 'copy-csv'], _ => {
   // fuse.dev({ reload: true }); // remove after demo
   return fuse.run();
 });
