@@ -62,8 +62,8 @@ class Index extends Component<any, State> {
                   <td>{r.state}</td>
                   <td>{r.cause}</td>
                   <td>
-                    <a href={r.fb_url}>FB </a>
-                    <a href={r.news_url}>News</a>
+                    {r.fb_url ? <a href={r.fb_url}>FB </a> : ""}
+                    {r.news_url ? <a href={r.news_url}>News</a> : ""}
                   </td>
                 </tr>
               ))}
@@ -83,7 +83,10 @@ class Index extends Component<any, State> {
       let rows = data.data;
       rows.shift();
       for (const row of rows.reverse()) {
-        let fbUrl = (row[11]) ? `https://${row[11].slice(1,-1)}` : undefined;
+        let fb: string = (' ' + row[11]).slice(1).slice(1,-1);
+        let fbUrl = (fb) ? `https://${fb}` : undefined;
+        let news: string = (' ' + row[12]).slice(1).slice(1,-1);
+        let newsUrl = (news) ? news : undefined;
         if (row[3]) {
           out.push({
             date: row[2],
@@ -94,7 +97,7 @@ class Index extends Component<any, State> {
             age: row[8],
             cause: (row[10]) ? row[10].slice(1,-1): undefined,
             fb_url: fbUrl, 
-            news_url: (row[12]) ? row[12].slice(1,-1): undefined
+            news_url: newsUrl
           });
         }
       }
